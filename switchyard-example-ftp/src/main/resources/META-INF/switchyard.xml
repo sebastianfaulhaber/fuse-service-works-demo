@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:1.1" xmlns:camel="urn:switchyard-component-camel:config:1.1" xmlns:file="urn:switchyard-component-camel-file:config:1.1" xmlns:ftp="urn:switchyard-component-camel-ftp:config:1.1" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sy="urn:switchyard-config:switchyard:1.1" name="switchyard-example-ftp" targetNamespace="urn:de.redhat.poc:switchyard-example-ftp:1.0">
+  <sca:composite name="switchyard-example-ftp" targetNamespace="urn:de.redhat.poc:switchyard-example-ftp:1.0">
+    <sca:service name="ReadFileService" promote="GenericFileProcessorBean/GenericFileProcessor">
+      <sca:interface.java interface="de.redhat.poc.generic.GenericFileProcessor"/>
+      <file:binding.file name="file1">
+        <sy:operationSelector operationName="getFileContents"/>
+        <file:directory>/tmp/demo/GenericFileProcessor/in</file:directory>
+        <file:consume>
+          <file:initialDelay>1000</file:initialDelay>
+          <file:delay>1000</file:delay>
+          <file:delete>true</file:delete>
+          <file:noop>false</file:noop>
+        </file:consume>
+      </file:binding.file>
+    </sca:service>
+    <sca:component name="GenericFileProcessorBean">
+      <bean:implementation.bean class="de.redhat.poc.generic.GenericFileProcessorBean"/>
+      <sca:service name="GenericFileProcessor">
+        <sca:interface.java interface="de.redhat.poc.generic.GenericFileProcessor"/>
+      </sca:service>
+      <sca:reference name="WriteFileService">
+        <sca:interface.java interface="de.redhat.poc.generic.GenericFileProcessor"/>
+      </sca:reference>
+      <sca:reference name="GenericSplitter">
+        <sca:interface.java interface="de.redhat.poc.generic.GenericSplitter"/>
+      </sca:reference>
+      <sca:reference name="GenericZipCreator">
+        <sca:interface.java interface="de.redhat.poc.generic.GenericZipCreator"/>
+      </sca:reference>
+    </sca:component>
+    <sca:reference name="FTPOut" multiplicity="0..1" promote="GenericFileProcessorBean/WriteFileService">
+      <sca:interface.java interface="de.redhat.poc.generic.GenericFileProcessor"/>
+      <ftp:binding.ftp name="ftp1">
+        <ftp:directory>ftp/demo/GenericFileProcessor/out</ftp:directory>
+        <ftp:fileName>response.txt</ftp:fileName>
+        <ftp:host>localhost</ftp:host>
+        <ftp:username>redhat</ftp:username>
+        <ftp:password>opensource2013</ftp:password>
+        <ftp:produce/>
+      </ftp:binding.ftp>
+    </sca:reference>
+    <sca:component name="GenericSplitterBean">
+      <camel:implementation.camel>
+        <camel:java class="de.redhat.poc.generic.GenericSplitterBean"/>
+      </camel:implementation.camel>
+      <sca:service name="GenericSplitter">
+        <sca:interface.java interface="de.redhat.poc.generic.GenericSplitter"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="GenericZipCreatorBean">
+      <camel:implementation.camel>
+        <camel:java class="de.redhat.poc.generic.GenericZipCreatorBean"/>
+      </camel:implementation.camel>
+      <sca:service name="GenericZipCreator">
+        <sca:interface.java interface="de.redhat.poc.generic.GenericZipCreator"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="FTP" promote="GenericFileProcessorBean/GenericFileProcessor">
+      <sca:interface.java interface="de.redhat.poc.generic.GenericFileProcessor"/>
+      <ftp:binding.ftp name="ftp1">
+        <sy:operationSelector operationName="getFileContents"/>
+        <ftp:directory>ftp/demo/GenericFileProcessor/in</ftp:directory>
+        <ftp:host>localhost</ftp:host>
+        <ftp:username>redhat</ftp:username>
+        <ftp:password>opensource2013</ftp:password>
+        <ftp:consume>
+          <ftp:delete>true</ftp:delete>
+          <ftp:delay>3000</ftp:delay>
+        </ftp:consume>
+      </ftp:binding.ftp>
+    </sca:service>
+  </sca:composite>
+</sy:switchyard>
