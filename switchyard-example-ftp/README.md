@@ -3,11 +3,19 @@ switchyard-example-ftp
 Synopsis
 --------------------------------------
 This demo scenario demonstrates how to use the switchyard FTP binding in conjunction with some routing logic:
+<<<<<<< HEAD
 
 1. Fetch file from FTP server (CSV with multiple lines)
 2. Split and map CSV data to POJO data model with Camel Bindy
 3. Process all POJO records, marshal and then aggregate them into one ZIP file
 4. Upload the resulting file to FTP server
+=======
+1. Fetch file from FTP server (CSV with multiple lines)
+2. Split and map CSV data to POJO data model with Camel Bindy
+3. Process all POJO records, marshal and then aggregate them into one ZIP file
+4. Upload the resulting file to FTP server
+
+>>>>>>> branch 'master' of git@github.com:sebastianfaulhaber/fuse-service-works-demo.git
 
 Prerequisites
 --------------------------------------
