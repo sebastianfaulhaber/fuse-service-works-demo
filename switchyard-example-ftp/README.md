@@ -9,7 +9,6 @@ This demo scenario demonstrates how to use the switchyard FTP binding in conjunc
 3. Process all POJO records, marshal and then aggregate them into one ZIP file
 4. Upload the resulting file to FTP server
 
-
 Prerequisites
 --------------------------------------
 1) Setup a working development environment for Red Hat JBoss Fuse Service Works as described here: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse_Service_Works/6/html-single/Getting_Started_Guide/index.html. After going through the installation steps you should have installed 
