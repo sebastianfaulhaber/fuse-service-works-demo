@@ -17,7 +17,6 @@ public class GenericSplitterBean extends RouteBuilder {
 	 */
 	public void configure() {
 		from("switchyard://GenericSplitter")
-			.log("Received message for 'GenericSplitter': ${body}")
 			.unmarshal(bindy)
 			.log("Finished unmarshalling.")
 			.end();

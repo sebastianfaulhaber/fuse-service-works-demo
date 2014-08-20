@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route>
+        <from uri="switchyard://GenericFileProcessor"/>
+        <log message="GenericFileProcessor - message received: ${body}"/>
+        <to uri="switchyard://GenericSplitter"/>
+        <split>
+            <simple>${body}</simple>
+            <log message="Processing Order Item NO ${property.CamelSplitIndex}..."/>
+            <convertBodyTo type="java.lang.String"/>
+            <to uri="switchyard://FTPOut?operationName=getFileContents"/>
+        </split>
+        <log message="GenericFileProcessor - Finished!"/>
+    </route>
+</routes>

@@ -28,12 +28,12 @@ Test
 ---------------------------------------
 1) Test File Binding
 ```
-cp /home/redhat/workspace/switchyard-example-ftp/src/test/resources/file.txt /tmp/demo/GenericFileProcessor/in
+cp /home/redhat/git/fuse-service-works-demo/switchyard-example-ftp/src/test/resources/file.txt /tmp/demo/GenericFileProcessor/in
 ```
 
 2) Test FTP Binding
 ```
-cp /home/redhat/workspace/switchyard-example-ftp/src/test/resources/file.txt /home/redhat/ftp/demo/GenericFileProcessor/in
+cp /home/redhat/git/fuse-service-works-demo/switchyard-example-ftp/src/test/resources/file.txt /home/redhat/ftp/demo/GenericFileProcessor/in
 ```
 
 ToDo
