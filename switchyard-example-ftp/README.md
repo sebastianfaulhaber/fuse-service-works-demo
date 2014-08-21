@@ -12,7 +12,7 @@ This demo scenario demonstrates how to use the switchyard FTP binding in conjunc
 
 Prerequisites
 --------------------------------------
-1) Setup a working development environment for Red Hat JBoss Fuse Service Works as described here: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse_Service_Works/6/html-single/Getting_Started_Guide/index.html. After going through the installation steps you should have installed 
+1) Setup a working development environment for Red Hat JBoss Fuse Service Works as described here: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse_Service_Works/6/html-single/Getting_Started_Guide/index.html. After going through the installation steps you should have setup a development environment comprised of JBoss Developer Studio (incl. Switchyard plugins) and a JBoss Fuse Service Works runtime for running the application.
 
 2) Configure Camel Bindy Extension
 https://bugzilla.redhat.com/show_bug.cgi?id=1026736
